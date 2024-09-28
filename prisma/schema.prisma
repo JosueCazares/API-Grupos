@@ -13,7 +13,34 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Example {
-  id   Int    @id @default(autoincrement())
-  name String
+// Modelo para la Carrera
+model Carrera {
+  id     Int     @id @default(autoincrement()) 
+  nombre String 
+  grupos Grupo[] 
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+// Modelo para el Grupo
+model Grupo {
+  id         Int      @id @default(autoincrement()) 
+  nombre     String 
+  periodoId  Int 
+  carreraId  Int 
+  carrera    Carrera  @relation(fields: [carreraId], references: [id]) 
+  profesorId Int 
+  alumnos    Alumno[] 
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+// Modelo para el Alumno
+model Alumno {
+  id      Int    @id @default(autoincrement()) 
+  nombre  String 
+  grupoId Int 
+  grupo   Grupo  @relation(fields: [grupoId], references: [id]) 
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
