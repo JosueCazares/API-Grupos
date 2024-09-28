@@ -15,27 +15,32 @@ datasource db {
 
 // Modelo para la Carrera
 model Carrera {
-  id     Int     @id @default(autoincrement()) // Primary Key
-  nombre String // Nombre de la carrera (e.g., Ingeniería en Sistemas)
-  grupos Grupo[] // Relación con los grupos que pertenecen a la carrera
+  id     Int     @id @default(autoincrement()) 
+  nombre String 
+  grupos Grupo[] 
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
 // Modelo para el Grupo
 model Grupo {
-  id         Int      @id @default(autoincrement()) // Primary Key
-  nombre     String // Nombre del grupo (e.g., Grupo A)
-  periodo    String // Periodo del grupo (e.g., 2024-1)
-  carreraId  Int // Foreign Key de Carrera
-  carrera    Carrera  @relation(fields: [carreraId], references: [id]) // Relación con Carrera
-  profesorId Int // ID del profesor asignado (del microservicio de Personal)
-  alumnos    Alumno[] // Relación con los alumnos que pertenecen a este grupo
+  id         Int      @id @default(autoincrement()) 
+  nombre     String 
+  periodoId  Int 
+  carreraId  Int 
+  carrera    Carrera  @relation(fields: [carreraId], references: [id]) 
+  profesorId Int 
+  alumnos    Alumno[] 
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
 // Modelo para el Alumno
 model Alumno {
-  id      Int    @id @default(autoincrement()) // Primary Key
-  nombre  String // Nombre del alumno
-  grupoId Int // Foreign Key del grupo al que pertenece el alumno
-  grupo   Grupo  @relation(fields: [grupoId], references: [id]) // Relación con el Grupo
-  periodo String // Periodo en el que está inscrito el alumno (relacionado con el grupo)
+  id      Int    @id @default(autoincrement()) 
+  nombre  String 
+  grupoId Int 
+  grupo   Grupo  @relation(fields: [grupoId], references: [id]) 
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
