@@ -7,6 +7,6 @@ export const ZodCarreraObj = z.object({
 
 // Esquema de validación para actualizar una carrera.
 export const ZodCarreraIdObj = z.object({
-    id: z.number().positive().min(1, "El ID de la carrera es requerido."), // ID de la carrera
-    nombre: z.string().min(1, "El nombre de la carrera es requerido."),
+    id: z.number().positive().min(1, "El ID de la carrera es requerido."),  // ID de la carrera
+    nombre: z.string().min(1, "El nombre de la carrera es requerido."),      // Nombre de la carrera
 });

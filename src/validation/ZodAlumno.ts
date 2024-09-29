@@ -4,6 +4,7 @@ import  type {Grupo} from '@prisma/client'
 
 export const ZodAlumnoObj = z.object({
   nombre  : z.string(),
+  matricula : z.string(),
   grupoId : z.number(),
   periodo : z.string(),
 })
@@ -11,6 +12,7 @@ export const ZodAlumnoObj = z.object({
 export const ZodAlumnoIdObj = z.object({
   id : z.number().positive().min(1),
   nombre  : z.string(),
+  matricula : z.string(),
   grupoId : z.number(),
   periodo : z.string(),
 })

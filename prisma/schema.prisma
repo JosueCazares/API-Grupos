@@ -13,7 +13,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Modelo para la Carrera
 model Carrera {
   id     Int     @id @default(autoincrement()) 
   nombre String 
@@ -25,7 +24,7 @@ model Carrera {
 model Alumno {
   id        Int      @id @default(autoincrement())
   nombre    String
-  matricula String   @unique
+  matricula String   
   grupos    GrupoAlumno[]
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
