@@ -87,3 +87,5 @@ router.delete('/:id', async (req: Request, res: Response) => {
         return handleZodError(res, error);  // Manejar errores
     }
 });
+
+
