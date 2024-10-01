@@ -13,7 +13,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Modelo para la Carrera
 model Carrera {
   id     Int     @id @default(autoincrement()) 
   nombre String 
@@ -22,25 +21,33 @@ model Carrera {
   updated_at DateTime @updatedAt
 }
 
-// Modelo para el Grupo
-model Grupo {
-  id         Int      @id @default(autoincrement()) 
-  nombre     String 
-  periodoId  Int 
-  carreraId  Int 
-  carrera    Carrera  @relation(fields: [carreraId], references: [id]) 
-  profesorId Int 
-  alumnos    Alumno[] 
+model Alumno {
+  id        Int      @id @default(autoincrement())
+  nombre    String
+  matricula String   
+  grupos    GrupoAlumno[]
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
 
-// Modelo para el Alumno
-model Alumno {
-  id      Int    @id @default(autoincrement()) 
-  nombre  String 
-  grupoId Int 
-  grupo   Grupo  @relation(fields: [grupoId], references: [id]) 
+model Grupo {
+  id        Int      @id @default(autoincrement())
+  nombre    String
+  periodo   String
+  carreraId Int
+  carrera   Carrera   @relation(fields: [carreraId], references: [id])
+  profesor  String
+  alumnos   GrupoAlumno[]
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model GrupoAlumno {
+  id        Int      @id @default(autoincrement())
+  grupoId   Int
+  alumnoId  Int
+  grupo     Grupo     @relation(fields: [grupoId], references: [id])
+  alumno    Alumno    @relation(fields: [alumnoId], references: [id])
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
